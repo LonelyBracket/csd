@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Control+Shift+Deliver - Design Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            accent: {
+              DEFAULT: '#06B6D4',
+              hover: '#22D3EE',
+              dim: '#0E7490',
+              glow: 'rgba(6, 182, 212, 0.15)',
+            },
+            surface: {
+              DEFAULT: '#0A0A0B',
+              raised: '#141415',
+              overlay: '#1C1C1E',
+              border: '#2A2A2D',
+            }
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #06B6D4 0%, #22D3EE 50%, #67E8F9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glow-box {
+      box-shadow: 0 0 60px rgba(6, 182, 212, 0.15), 0 0 100px rgba(6, 182, 212, 0.05);
+    }
+    .dot-pattern {
+      background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+    .glass {
+      background: rgba(20, 20, 21, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-surface text-white">
+
+  <!-- Navigation -->
+  <header class="fixed top-0 w-full glass border-b border-surface-border z-50">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6">
+      <div class="flex items-center justify-between h-16">
+        <button class="lg:hidden p-2 -ml-2 rounded-lg hover:bg-surface-overlay transition-colors">
+          <svg class="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+
+        <a href="#" class="flex flex-col">
+          <span class="text-lg font-bold text-white">
+            <span class="logo-keys"></span>+<span class="text-accent">Deliver</span>
+          </span>
+          <span class="text-[10px] text-zinc-500 hidden sm:block -mt-0.5">Tech leaders who deliver</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1">
+          <a href="#" class="px-4 py-2 text-sm font-medium text-white bg-surface-overlay rounded-lg">Episodes</a>
+          <a href="#" class="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-overlay rounded-lg transition-colors">Articles</a>
+          <a href="#" class="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-overlay rounded-lg transition-colors">Guests</a>
+          <a href="#" class="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-overlay rounded-lg transition-colors">Topics</a>
+        </nav>
+
+        <button class="p-2 -mr-2 rounded-lg hover:bg-surface-overlay transition-colors">
+          <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <!-- Hero / Featured Episode -->
+    <section class="px-4 lg:px-6 py-12 lg:py-20 dot-pattern">
+      <div class="max-w-7xl mx-auto">
+        <p class="text-xs font-semibold text-accent uppercase tracking-widest mb-6">Latest Episode</p>
+
+        <article class="bg-surface-raised border border-surface-border rounded-2xl overflow-hidden hover:border-accent/30 glow-box transition-all duration-300">
+          <div class="lg:flex">
+            <!-- Guest Photo -->
+            <div class="lg:w-2/5 relative">
+              <div class="aspect-video lg:aspect-auto lg:h-full bg-surface-overlay relative overflow-hidden">
+                <!-- Guest headshot placeholder with gradient overlay -->
+                <img
+                  src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=800&h=800&fit=crop&crop=face"
+                  alt="Sarah Chen"
+                  class="w-full h-full object-cover"
+                />
+                <!-- Gradient overlay for depth -->
+                <div class="absolute inset-0 bg-gradient-to-t from-surface-raised via-transparent to-transparent lg:bg-gradient-to-r lg:from-transparent lg:via-transparent lg:to-surface-raised"></div>
+                <!-- Play button overlay -->
+                <div class="absolute inset-0 flex items-center justify-center">
+                  <div class="w-20 h-20 rounded-full bg-accent/90 backdrop-blur-sm flex items-center justify-center hover:bg-accent hover:scale-110 transition-all duration-200 cursor-pointer shadow-lg shadow-accent/25">
+                    <svg class="w-8 h-8 text-surface ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Content -->
+            <div class="p-6 lg:p-10 lg:w-3/5 flex flex-col justify-center">
+              <div class="flex flex-wrap gap-2 mb-4">
+                <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full border border-accent/20">DevOps</span>
+                <span class="px-3 py-1 bg-accent/10 text-accent text-xs font-medium rounded-full border border-accent/20">Platform Engineering</span>
+              </div>
+
+              <h2 class="text-2xl lg:text-4xl font-bold text-white mb-4 leading-tight">
+                Building Internal Developer Platforms That Teams Actually Want to Use
+              </h2>
+
+              <p class="text-zinc-400 mb-6 lg:text-lg leading-relaxed">
+                Sarah Chen from Spotify joins us to discuss how they built Backstage and the lessons learned about creating developer experiences that stick.
+              </p>
+
+              <div class="flex flex-wrap items-center gap-4 text-sm text-zinc-500 mb-8">
+                <span class="flex items-center gap-2">
+                  <div class="w-7 h-7 rounded-full overflow-hidden ring-2 ring-accent/30">
+                    <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=100&h=100&fit=crop&crop=face" alt="Sarah Chen" class="w-full h-full object-cover"/>
+                  </div>
+                  <span class="text-zinc-300">Sarah Chen</span>
+                </span>
+                <span class="text-zinc-600">·</span>
+                <span>58 min</span>
+                <span class="text-zinc-600">·</span>
+                <span>Nov 20, 2024</span>
+              </div>
+
+              <button class="inline-flex items-center justify-center gap-2 bg-accent hover:bg-accent-hover text-surface font-semibold px-6 py-3 rounded-lg transition-all duration-200 w-full sm:w-auto group">
+                <svg class="w-5 h-5 group-hover:scale-110 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M8 5v14l11-7z"/>
+                </svg>
+                Listen Now
+              </button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <!-- Recent Episodes + Latest Articles -->
+    <section class="px-4 lg:px-6 py-12 lg:py-16">
+      <div class="max-w-7xl mx-auto">
+        <div class="lg:grid lg:grid-cols-5 lg:gap-12">
+
+          <!-- Recent Episodes -->
+          <div class="lg:col-span-3 mb-12 lg:mb-0">
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-2xl font-bold text-white">Recent Episodes</h2>
+              <a href="#" class="text-sm font-medium text-accent hover:text-accent-hover transition-colors">View All →</a>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Episode Card 1 - Kelsey Hightower -->
+              <article class="group bg-surface-raised border border-surface-border rounded-xl p-4 lg:p-5 hover:border-accent/30 hover:bg-surface-overlay transition-all duration-200 cursor-pointer">
+                <div class="flex gap-4">
+                  <div class="w-20 h-20 lg:w-24 lg:h-24 rounded-lg overflow-hidden flex-shrink-0 relative group-hover:ring-2 group-hover:ring-accent/30 transition-all duration-200">
+                    <img
+                      src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face"
+                      alt="Kelsey Hightower"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    />
+                    <!-- Small play indicator -->
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap gap-2 mb-2">
+                      <span class="px-2 py-0.5 bg-surface-overlay text-zinc-400 text-xs font-medium rounded-full">Cloud</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white line-clamp-2 mb-2 group-hover:text-accent transition-colors">The Future of Kubernetes: What's Next After Containers</h3>
+                    <div class="flex items-center gap-2 text-xs text-zinc-500">
+                      <span class="text-zinc-400">Kelsey Hightower</span>
+                      <span>·</span>
+                      <span>45 min</span>
+                      <span>·</span>
+                      <span>Nov 15, 2024</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Episode Card 2 - Camille Fournier -->
+              <article class="group bg-surface-raised border border-surface-border rounded-xl p-4 lg:p-5 hover:border-accent/30 hover:bg-surface-overlay transition-all duration-200 cursor-pointer">
+                <div class="flex gap-4">
+                  <div class="w-20 h-20 lg:w-24 lg:h-24 rounded-lg overflow-hidden flex-shrink-0 relative group-hover:ring-2 group-hover:ring-accent/30 transition-all duration-200">
+                    <img
+                      src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face"
+                      alt="Camille Fournier"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    />
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap gap-2 mb-2">
+                      <span class="px-2 py-0.5 bg-surface-overlay text-zinc-400 text-xs font-medium rounded-full">Leadership</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white line-clamp-2 mb-2 group-hover:text-accent transition-colors">Engineering Management in a Remote-First World</h3>
+                    <div class="flex items-center gap-2 text-xs text-zinc-500">
+                      <span class="text-zinc-400">Camille Fournier</span>
+                      <span>·</span>
+                      <span>52 min</span>
+                      <span>·</span>
+                      <span>Nov 10, 2024</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Episode Card 3 - Nora Jones -->
+              <article class="group bg-surface-raised border border-surface-border rounded-xl p-4 lg:p-5 hover:border-accent/30 hover:bg-surface-overlay transition-all duration-200 cursor-pointer">
+                <div class="flex gap-4">
+                  <div class="w-20 h-20 lg:w-24 lg:h-24 rounded-lg overflow-hidden flex-shrink-0 relative group-hover:ring-2 group-hover:ring-accent/30 transition-all duration-200">
+                    <img
+                      src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face"
+                      alt="Nora Jones"
+                      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                    />
+                    <div class="absolute inset-0 flex items-center justify-center bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity">
+                      <svg class="w-8 h-8 text-white" fill="currentColor" viewBox="0 0 24 24">
+                        <path d="M8 5v14l11-7z"/>
+                      </svg>
+                    </div>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <div class="flex flex-wrap gap-2 mb-2">
+                      <span class="px-2 py-0.5 bg-surface-overlay text-zinc-400 text-xs font-medium rounded-full">SRE</span>
+                    </div>
+                    <h3 class="text-lg font-semibold text-white line-clamp-2 mb-2 group-hover:text-accent transition-colors">Incident Management That Doesn't Burn Out Your Team</h3>
+                    <div class="flex items-center gap-2 text-xs text-zinc-500">
+                      <span class="text-zinc-400">Nora Jones</span>
+                      <span>·</span>
+                      <span>48 min</span>
+                      <span>·</span>
+                      <span>Nov 5, 2024</span>
+                    </div>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+
+          <!-- Latest Articles (Abstract Gradients) -->
+          <div class="lg:col-span-2">
+            <div class="flex items-center justify-between mb-8">
+              <h2 class="text-2xl font-bold text-white">Latest Articles</h2>
+              <a href="#" class="text-sm font-medium text-accent hover:text-accent-hover transition-colors">View All →</a>
+            </div>
+
+            <div class="space-y-4">
+              <!-- Article Card 1 - with image + gradient overlay -->
+              <article class="group bg-surface-raised border border-surface-border rounded-xl overflow-hidden hover:border-accent/30 transition-all duration-200 cursor-pointer">
+                <div class="aspect-[2/1] relative overflow-hidden">
+                  <!-- AI-generated image placeholder (use actual AI image in production) -->
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&h=300&fit=crop"
+                    alt="Dashboard with metrics and charts"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <!-- Gradient overlay matching hero style -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-surface-raised via-surface-raised/60 to-transparent"></div>
+                  <!-- Subtle cyan tint overlay -->
+                  <div class="absolute inset-0 bg-accent/10 mix-blend-overlay"></div>
+                </div>
+                <div class="p-4">
+                  <span class="text-xs font-medium text-accent">DevOps</span>
+                  <h3 class="text-base font-semibold text-white line-clamp-2 mt-2 mb-2 group-hover:text-accent transition-colors">5 Metrics That Actually Matter for Platform Teams</h3>
+                  <div class="flex items-center gap-2 text-xs text-zinc-500">
+                    <span>5 min read</span>
+                    <span>·</span>
+                    <span>Nov 18, 2024</span>
+                  </div>
+                </div>
+              </article>
+
+              <!-- Article Card 2 - with image + gradient overlay -->
+              <article class="group bg-surface-raised border border-surface-border rounded-xl overflow-hidden hover:border-accent/30 transition-all duration-200 cursor-pointer">
+                <div class="aspect-[2/1] relative overflow-hidden">
+                  <!-- AI-generated image placeholder (use actual AI image in production) -->
+                  <img
+                    src="https://images.unsplash.com/photo-1618401471353-b98afee0b2eb?w=600&h=300&fit=crop"
+                    alt="Code pipeline and automation visualization"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                  />
+                  <!-- Gradient overlay matching hero style -->
+                  <div class="absolute inset-0 bg-gradient-to-t from-surface-raised via-surface-raised/60 to-transparent"></div>
+                  <!-- Subtle cyan tint overlay -->
+                  <div class="absolute inset-0 bg-accent/10 mix-blend-overlay"></div>
+                </div>
+                <div class="p-4">
+                  <span class="text-xs font-medium text-accent">Culture</span>
+                  <h3 class="text-base font-semibold text-white line-clamp-2 mt-2 mb-2 group-hover:text-accent transition-colors">Why Your Engineers Hate Your CI Pipeline</h3>
+                  <div class="flex items-center gap-2 text-xs text-zinc-500">
+                    <span>8 min read</span>
+                    <span>·</span>
+                    <span>Nov 12, 2024</span>
+                  </div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Browse by Topic -->
+    <section class="px-4 lg:px-6 py-12 lg:py-16 border-t border-surface-border">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-2xl font-bold text-white mb-8">Browse by Topic</h2>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">DevOps</a>
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">Cloud</a>
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">Leadership</a>
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">Kubernetes</a>
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">Platform Engineering</a>
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">SRE</a>
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">Culture</a>
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">Architecture</a>
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">CI/CD</a>
+          <a href="#" class="px-4 py-2 bg-surface-raised border border-surface-border text-zinc-300 text-sm font-medium rounded-full hover:border-accent/50 hover:text-accent hover:bg-accent/5 transition-all duration-200">Observability</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Guests -->
+    <section class="px-4 lg:px-6 py-12 lg:py-16 border-t border-surface-border">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex items-center justify-between mb-8">
+          <h2 class="text-2xl font-bold text-white">Featured Guests</h2>
+          <a href="#" class="text-sm font-medium text-accent hover:text-accent-hover transition-colors">View All →</a>
+        </div>
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
+          <!-- Guest 1 - Sarah Chen -->
+          <article class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200 cursor-pointer">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face" alt="Sarah Chen" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Sarah Chen</h3>
+            <p class="text-sm text-zinc-400 mt-1">Staff Engineer</p>
+            <p class="text-sm text-zinc-500">Spotify</p>
+            <p class="text-xs text-zinc-600 mt-3">3 episodes</p>
+          </article>
+
+          <!-- Guest 2 - Kelsey Hightower -->
+          <article class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200 cursor-pointer">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Kelsey Hightower" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Kelsey Hightower</h3>
+            <p class="text-sm text-zinc-400 mt-1">Developer Advocate</p>
+            <p class="text-sm text-zinc-500">Google Cloud</p>
+            <p class="text-xs text-zinc-600 mt-3">2 episodes</p>
+          </article>
+
+          <!-- Guest 3 - Camille Fournier -->
+          <article class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200 cursor-pointer">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face" alt="Camille Fournier" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Camille Fournier</h3>
+            <p class="text-sm text-zinc-400 mt-1">Author & Consultant</p>
+            <p class="text-sm text-zinc-500">The Manager's Path</p>
+            <p class="text-xs text-zinc-600 mt-3">2 episodes</p>
+          </article>
+
+          <!-- Guest 4 - Nora Jones -->
+          <article class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200 cursor-pointer">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" alt="Nora Jones" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Nora Jones</h3>
+            <p class="text-sm text-zinc-400 mt-1">CEO</p>
+            <p class="text-sm text-zinc-500">Jeli.io</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-4 lg:px-6 py-12 border-t border-surface-border bg-surface">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <h4 class="text-white font-semibold mb-4">Content</h4>
+            <ul class="space-y-3 text-sm">
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Episodes</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Articles</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Guests</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Topics</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">Subscribe</h4>
+            <ul class="space-y-3 text-sm">
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Apple Podcasts</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Spotify</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">RSS Feed</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Newsletter</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">Connect</h4>
+            <ul class="space-y-3 text-sm">
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Twitter</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">LinkedIn</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">YouTube</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">About</h4>
+            <ul class="space-y-3 text-sm">
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">About Us</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Contact</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Sponsor</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-surface-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p class="text-sm text-zinc-500">© 2024 Control+Shift+Deliver. All rights reserved.</p>
+          <p class="text-sm font-semibold"><span class="logo-keys"></span>+<span class="gradient-text">Deliver</span></p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+</body>
+</html>
