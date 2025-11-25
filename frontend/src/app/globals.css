@@ -1,0 +1,126 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-surface text-white antialiased;
+  }
+}
+
+@layer utilities {
+  /* Gradient text effect */
+  .gradient-text {
+    background: linear-gradient(135deg, #06B6D4 0%, #22D3EE 50%, #67E8F9 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Glow effect for featured cards */
+  .glow-box {
+    box-shadow: 0 0 60px rgba(6, 182, 212, 0.15), 0 0 100px rgba(6, 182, 212, 0.05);
+  }
+
+  /* Dot pattern background */
+  .dot-pattern {
+    background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+
+  /* Glass morphism for header */
+  .glass {
+    background: rgba(20, 20, 21, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+  }
+
+  /* Prose styling for article/episode content */
+  .prose-dark h2 {
+    @apply text-white text-2xl lg:text-3xl font-bold mt-10 mb-4;
+  }
+
+  .prose-dark h3 {
+    @apply text-white text-xl lg:text-2xl font-semibold mt-8 mb-3;
+  }
+
+  .prose-dark p {
+    @apply text-zinc-400 text-base lg:text-lg leading-relaxed mb-6;
+  }
+
+  .prose-dark ul,
+  .prose-dark ol {
+    @apply text-zinc-400 text-base lg:text-lg ml-6 mb-6 leading-relaxed;
+  }
+
+  .prose-dark ul {
+    @apply list-disc;
+  }
+
+  .prose-dark ol {
+    @apply list-decimal;
+  }
+
+  .prose-dark li {
+    @apply mb-2;
+  }
+
+  .prose-dark a {
+    @apply text-accent underline hover:text-accent-hover transition-colors;
+  }
+
+  .prose-dark blockquote {
+    @apply border-l-4 border-accent pl-6 text-zinc-500 italic my-8 text-lg lg:text-xl;
+  }
+
+  .prose-dark code {
+    @apply bg-surface-overlay px-2 py-0.5 rounded text-sm text-accent-hover;
+  }
+
+  .prose-dark pre {
+    @apply bg-surface-overlay p-6 rounded-xl overflow-x-auto my-8;
+  }
+
+  .prose-dark pre code {
+    @apply bg-transparent p-0 text-zinc-400 text-sm;
+  }
+
+  .prose-dark strong {
+    @apply text-zinc-200 font-semibold;
+  }
+
+  /* Audio player progress bar styling */
+  .progress-bar {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 4px;
+    background: #2A2A2D;
+    border-radius: 2px;
+    cursor: pointer;
+  }
+
+  .progress-bar::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px;
+    height: 14px;
+    background: #06B6D4;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(6, 182, 212, 0.5);
+  }
+
+  .progress-bar::-moz-range-thumb {
+    width: 14px;
+    height: 14px;
+    background: #06B6D4;
+    border-radius: 50%;
+    cursor: pointer;
+    border: none;
+  }
+
+  .progress-bar::-webkit-slider-runnable-track {
+    background: linear-gradient(to right, #06B6D4 0%, #06B6D4 30%, #2A2A2D 30%, #2A2A2D 100%);
+    border-radius: 2px;
+  }
+}
