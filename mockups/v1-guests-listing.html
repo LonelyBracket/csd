@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Guests | Control+Shift+Deliver</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            accent: {
+              DEFAULT: '#06B6D4',
+              hover: '#22D3EE',
+              dim: '#0E7490',
+              glow: 'rgba(6, 182, 212, 0.15)',
+            },
+            surface: {
+              DEFAULT: '#0A0A0B',
+              raised: '#141415',
+              overlay: '#1C1C1E',
+              border: '#2A2A2D',
+            }
+          },
+        },
+      },
+    }
+  </script>
+  <style>
+    body { font-family: 'Inter', sans-serif; }
+    .gradient-text {
+      background: linear-gradient(135deg, #06B6D4 0%, #22D3EE 50%, #67E8F9 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .glow-box {
+      box-shadow: 0 0 60px rgba(6, 182, 212, 0.15), 0 0 100px rgba(6, 182, 212, 0.05);
+    }
+    .glass {
+      background: rgba(20, 20, 21, 0.8);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
+  </style>
+</head>
+<body class="bg-surface text-white">
+
+  <!-- Navigation -->
+  <header class="fixed top-0 w-full glass border-b border-surface-border z-50">
+    <div class="max-w-7xl mx-auto px-4 lg:px-6">
+      <div class="flex items-center justify-between h-16">
+        <button class="lg:hidden p-2 -ml-2 rounded-lg hover:bg-surface-overlay transition-colors">
+          <svg class="w-6 h-6 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+
+        <a href="#" class="flex flex-col">
+          <span class="text-lg font-bold text-white">Control+Shift+<span class="text-accent">Deliver</span></span>
+          <span class="text-[10px] text-zinc-500 hidden sm:block -mt-0.5">Tech leaders who deliver</span>
+        </a>
+
+        <nav class="hidden lg:flex items-center gap-1">
+          <a href="#" class="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-overlay rounded-lg transition-colors">Episodes</a>
+          <a href="#" class="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-overlay rounded-lg transition-colors">Articles</a>
+          <a href="#" class="px-4 py-2 text-sm font-medium text-white bg-surface-overlay rounded-lg">Guests</a>
+          <a href="#" class="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-overlay rounded-lg transition-colors">Topics</a>
+        </nav>
+
+        <button class="p-2 -mr-2 rounded-lg hover:bg-surface-overlay transition-colors">
+          <svg class="w-5 h-5 text-zinc-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="pt-16">
+    <!-- Page Header -->
+    <section class="px-4 lg:px-6 py-12 lg:py-16 border-b border-surface-border">
+      <div class="max-w-7xl mx-auto">
+        <h1 class="text-4xl lg:text-5xl font-bold text-white mb-4">Guests</h1>
+        <p class="text-xl text-zinc-400 max-w-2xl">
+          Tech leaders, engineers, and innovators sharing their insights on building great software and teams.
+        </p>
+
+        <!-- Stats -->
+        <div class="flex gap-8 mt-8">
+          <div>
+            <p class="text-3xl font-bold text-white">42</p>
+            <p class="text-sm text-zinc-500">Total Guests</p>
+          </div>
+          <div>
+            <p class="text-3xl font-bold text-white">28</p>
+            <p class="text-sm text-zinc-500">Companies</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Search & Filter -->
+    <section class="px-4 lg:px-6 py-6 border-b border-surface-border sticky top-16 glass z-40">
+      <div class="max-w-7xl mx-auto">
+        <div class="flex flex-col sm:flex-row gap-4">
+          <!-- Search -->
+          <div class="relative flex-1 max-w-md">
+            <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-zinc-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+            </svg>
+            <input
+              type="text"
+              placeholder="Search guests..."
+              class="w-full pl-10 pr-4 py-2.5 bg-surface-raised border border-surface-border rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-accent/50 transition-colors"
+            />
+          </div>
+
+          <!-- Filter by Topic -->
+          <select class="bg-surface-raised border border-surface-border rounded-lg px-4 py-2.5 text-sm text-zinc-300 focus:outline-none focus:border-accent/50">
+            <option>All Topics</option>
+            <option>DevOps</option>
+            <option>Platform Engineering</option>
+            <option>Leadership</option>
+            <option>Cloud</option>
+            <option>SRE</option>
+            <option>Architecture</option>
+          </select>
+
+          <!-- Sort -->
+          <select class="bg-surface-raised border border-surface-border rounded-lg px-4 py-2.5 text-sm text-zinc-300 focus:outline-none focus:border-accent/50">
+            <option>Most Episodes</option>
+            <option>Recently Featured</option>
+            <option>A-Z</option>
+          </select>
+        </div>
+      </div>
+    </section>
+
+    <!-- Featured Guests -->
+    <section class="px-4 lg:px-6 py-12">
+      <div class="max-w-7xl mx-auto">
+        <h2 class="text-xl font-bold text-white mb-6">Featured Guests</h2>
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
+          <!-- Featured Guest 1 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-accent/30 hover:glow-box transition-all duration-200">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-20 h-20 rounded-xl overflow-hidden ring-2 ring-accent/30 flex-shrink-0 group-hover:ring-accent/50 transition-all">
+                <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face" alt="Sarah Chen" class="w-full h-full object-cover"/>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-white text-lg group-hover:text-accent transition-colors">Sarah Chen</h3>
+                <p class="text-sm text-accent">Staff Engineer</p>
+                <p class="text-sm text-zinc-500">Spotify</p>
+              </div>
+            </div>
+            <p class="text-sm text-zinc-400 mb-4 line-clamp-2">Leading the Backstage core team, building developer portals that engineers actually want to use.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex gap-3 text-xs text-zinc-500">
+                <span>3 episodes</span>
+                <span>·</span>
+                <span>2 articles</span>
+              </div>
+              <span class="text-accent text-sm font-medium group-hover:translate-x-1 transition-transform">View →</span>
+            </div>
+          </a>
+
+          <!-- Featured Guest 2 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-accent/30 hover:glow-box transition-all duration-200">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-20 h-20 rounded-xl overflow-hidden ring-2 ring-accent/30 flex-shrink-0 group-hover:ring-accent/50 transition-all">
+                <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Kelsey Hightower" class="w-full h-full object-cover"/>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-white text-lg group-hover:text-accent transition-colors">Kelsey Hightower</h3>
+                <p class="text-sm text-accent">Developer Advocate</p>
+                <p class="text-sm text-zinc-500">Google Cloud</p>
+              </div>
+            </div>
+            <p class="text-sm text-zinc-400 mb-4 line-clamp-2">Kubernetes legend and advocate for making complex systems simple and accessible.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex gap-3 text-xs text-zinc-500">
+                <span>2 episodes</span>
+                <span>·</span>
+                <span>1 article</span>
+              </div>
+              <span class="text-accent text-sm font-medium group-hover:translate-x-1 transition-transform">View →</span>
+            </div>
+          </a>
+
+          <!-- Featured Guest 3 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-6 hover:border-accent/30 hover:glow-box transition-all duration-200">
+            <div class="flex items-start gap-4 mb-4">
+              <div class="w-20 h-20 rounded-xl overflow-hidden ring-2 ring-accent/30 flex-shrink-0 group-hover:ring-accent/50 transition-all">
+                <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face" alt="Camille Fournier" class="w-full h-full object-cover"/>
+              </div>
+              <div class="flex-1 min-w-0">
+                <h3 class="font-semibold text-white text-lg group-hover:text-accent transition-colors">Camille Fournier</h3>
+                <p class="text-sm text-accent">Author & Consultant</p>
+                <p class="text-sm text-zinc-500">The Manager's Path</p>
+              </div>
+            </div>
+            <p class="text-sm text-zinc-400 mb-4 line-clamp-2">Engineering leadership expert and author of "The Manager's Path" guiding tech leaders.</p>
+            <div class="flex items-center justify-between">
+              <div class="flex gap-3 text-xs text-zinc-500">
+                <span>2 episodes</span>
+              </div>
+              <span class="text-accent text-sm font-medium group-hover:translate-x-1 transition-transform">View →</span>
+            </div>
+          </a>
+        </div>
+
+        <!-- All Guests Grid -->
+        <h2 class="text-xl font-bold text-white mb-6">All Guests</h2>
+        <p class="text-sm text-zinc-500 mb-6">Showing 42 guests</p>
+
+        <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
+          <!-- Guest Card 1 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=200&h=200&fit=crop&crop=face" alt="Sarah Chen" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Sarah Chen</h3>
+            <p class="text-sm text-zinc-400 mt-1">Staff Engineer</p>
+            <p class="text-sm text-zinc-500">Spotify</p>
+            <p class="text-xs text-zinc-600 mt-3">3 episodes</p>
+          </a>
+
+          <!-- Guest Card 2 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&h=200&fit=crop&crop=face" alt="Kelsey Hightower" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Kelsey Hightower</h3>
+            <p class="text-sm text-zinc-400 mt-1">Developer Advocate</p>
+            <p class="text-sm text-zinc-500">Google Cloud</p>
+            <p class="text-xs text-zinc-600 mt-3">2 episodes</p>
+          </a>
+
+          <!-- Guest Card 3 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?w=200&h=200&fit=crop&crop=face" alt="Camille Fournier" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Camille Fournier</h3>
+            <p class="text-sm text-zinc-400 mt-1">Author & Consultant</p>
+            <p class="text-sm text-zinc-500">The Manager's Path</p>
+            <p class="text-xs text-zinc-600 mt-3">2 episodes</p>
+          </a>
+
+          <!-- Guest Card 4 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=200&h=200&fit=crop&crop=face" alt="Nora Jones" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Nora Jones</h3>
+            <p class="text-sm text-zinc-400 mt-1">CEO</p>
+            <p class="text-sm text-zinc-500">Jeli.io</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 5 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=200&h=200&fit=crop&crop=face" alt="David Park" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">David Park</h3>
+            <p class="text-sm text-zinc-400 mt-1">VP Engineering</p>
+            <p class="text-sm text-zinc-500">Stripe</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 6 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=200&h=200&fit=crop&crop=face" alt="Marcus Johnson" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Marcus Johnson</h3>
+            <p class="text-sm text-zinc-400 mt-1">Platform Lead</p>
+            <p class="text-sm text-zinc-500">Netflix</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 7 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=200&h=200&fit=crop&crop=face" alt="Tom Preston-Werner" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Tom Preston-Werner</h3>
+            <p class="text-sm text-zinc-400 mt-1">Co-founder</p>
+            <p class="text-sm text-zinc-500">GitHub (Former)</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 8 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=200&h=200&fit=crop&crop=face" alt="Lisa Su" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Emily Zhang</h3>
+            <p class="text-sm text-zinc-400 mt-1">Principal Engineer</p>
+            <p class="text-sm text-zinc-500">AWS</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 9 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=200&h=200&fit=crop&crop=face" alt="James Wilson" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">James Wilson</h3>
+            <p class="text-sm text-zinc-400 mt-1">CTO</p>
+            <p class="text-sm text-zinc-500">Datadog</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 10 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=200&h=200&fit=crop&crop=face" alt="Amanda Lee" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Amanda Lee</h3>
+            <p class="text-sm text-zinc-400 mt-1">SRE Lead</p>
+            <p class="text-sm text-zinc-500">Shopify</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 11 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=200&h=200&fit=crop&crop=face" alt="Michael Chen" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Michael Chen</h3>
+            <p class="text-sm text-zinc-400 mt-1">Staff Engineer</p>
+            <p class="text-sm text-zinc-500">Uber</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 12 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?w=200&h=200&fit=crop&crop=face" alt="Rachel Green" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Rachel Green</h3>
+            <p class="text-sm text-zinc-400 mt-1">Director of Eng</p>
+            <p class="text-sm text-zinc-500">Airbnb</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 13 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1507591064344-4c6ce005b128?w=200&h=200&fit=crop&crop=face" alt="Alex Rivera" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Alex Rivera</h3>
+            <p class="text-sm text-zinc-400 mt-1">DevOps Architect</p>
+            <p class="text-sm text-zinc-500">HashiCorp</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 14 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=200&h=200&fit=crop&crop=face" alt="Priya Sharma" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Priya Sharma</h3>
+            <p class="text-sm text-zinc-400 mt-1">VP Platform</p>
+            <p class="text-sm text-zinc-500">Confluent</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 15 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1463453091185-61582044d556?w=200&h=200&fit=crop&crop=face" alt="Daniel Kim" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Daniel Kim</h3>
+            <p class="text-sm text-zinc-400 mt-1">Principal SRE</p>
+            <p class="text-sm text-zinc-500">LinkedIn</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 16 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&h=200&fit=crop&crop=face" alt="Sophie Martin" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Sophie Martin</h3>
+            <p class="text-sm text-zinc-400 mt-1">Engineering Manager</p>
+            <p class="text-sm text-zinc-500">Figma</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 17 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?w=200&h=200&fit=crop&crop=face" alt="Ryan Cooper" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Ryan Cooper</h3>
+            <p class="text-sm text-zinc-400 mt-1">Tech Lead</p>
+            <p class="text-sm text-zinc-500">Vercel</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+
+          <!-- Guest Card 18 -->
+          <a href="#" class="group bg-surface-raised border border-surface-border rounded-xl p-5 text-center hover:border-accent/30 transition-all duration-200">
+            <div class="w-20 h-20 mx-auto rounded-full overflow-hidden mb-4 ring-2 ring-surface-border group-hover:ring-accent/50 group-hover:scale-110 transition-all duration-200">
+              <img src="https://images.unsplash.com/photo-1489424731084-a5d8b219a5bb?w=200&h=200&fit=crop&crop=face" alt="Nina Patel" class="w-full h-full object-cover"/>
+            </div>
+            <h3 class="font-semibold text-white group-hover:text-accent transition-colors">Nina Patel</h3>
+            <p class="text-sm text-zinc-400 mt-1">Staff Engineer</p>
+            <p class="text-sm text-zinc-500">Twilio</p>
+            <p class="text-xs text-zinc-600 mt-3">1 episode</p>
+          </a>
+        </div>
+
+        <!-- Load More -->
+        <div class="mt-12 text-center">
+          <button class="px-8 py-3 bg-surface-raised border border-surface-border text-zinc-300 font-medium rounded-lg hover:border-accent/50 hover:text-accent transition-colors">
+            Load More Guests
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="px-4 lg:px-6 py-12 border-t border-surface-border bg-surface">
+      <div class="max-w-7xl mx-auto">
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-8 mb-12">
+          <div>
+            <h4 class="text-white font-semibold mb-4">Content</h4>
+            <ul class="space-y-3 text-sm">
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Episodes</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Articles</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Guests</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Topics</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">Subscribe</h4>
+            <ul class="space-y-3 text-sm">
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Apple Podcasts</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Spotify</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">RSS Feed</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Newsletter</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">Connect</h4>
+            <ul class="space-y-3 text-sm">
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Twitter</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">LinkedIn</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">YouTube</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 class="text-white font-semibold mb-4">About</h4>
+            <ul class="space-y-3 text-sm">
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">About Us</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Contact</a></li>
+              <li><a href="#" class="text-zinc-400 hover:text-accent transition-colors">Sponsor</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="border-t border-surface-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
+          <p class="text-sm text-zinc-500">© 2024 Control+Shift+Deliver. All rights reserved.</p>
+          <p class="text-sm font-semibold">Control+Shift+<span class="gradient-text">Deliver</span></p>
+        </div>
+      </div>
+    </footer>
+  </main>
+
+</body>
+</html>
