@@ -3,10 +3,23 @@ import Footer from '@/components/Footer';
 import ArticleCard from '@/components/ArticleCard';
 import Link from 'next/link';
 import Image from 'next/image';
-import { mockArticles } from '@/lib/mockData';
+import { getArticleBySlug, getRelatedArticles } from '@/lib/api';
+import { notFound } from 'next/navigation';
 
-export default function ArticlePage() {
-  const article = mockArticles[0];
+export default async function ArticlePage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const article = await getArticleBySlug(params.slug);
+
+  if (!article) {
+    notFound();
+  }
+
+  // Convert topic to slug format for fetching related articles
+  const topicSlug = article.topic.toLowerCase().replace(/\s+/g, '-');
+  const relatedArticles = await getRelatedArticles(topicSlug);
 
   return (
     <>
@@ -102,7 +115,7 @@ export default function ArticlePage() {
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl font-bold text-white mb-8">Related Content</h2>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {mockArticles.map((relatedArticle) => (
+              {relatedArticles.map((relatedArticle) => (
                 <ArticleCard key={relatedArticle.slug} {...relatedArticle} />
               ))}
             </div>

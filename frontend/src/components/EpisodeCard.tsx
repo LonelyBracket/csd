@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import NewBadge from './NewBadge';
 
 interface EpisodeCardProps {
   slug: string;
@@ -66,8 +67,9 @@ export default function EpisodeCard({
                 ))}
               </div>
 
-              <h2 className="text-2xl lg:text-4xl font-bold text-white mb-4 leading-tight group-hover:text-accent transition-colors">
-                {title}
+              <h2 className="text-2xl lg:text-4xl font-bold text-white mb-4 leading-tight group-hover:text-accent transition-colors flex items-center gap-3 flex-wrap">
+                <span>{title}</span>
+                <NewBadge date={date} />
               </h2>
 
               <p className="text-zinc-400 mb-6 lg:text-lg leading-relaxed">{description}</p>
@@ -126,8 +128,9 @@ export default function EpisodeCard({
                 </span>
               ))}
             </div>
-            <h3 className="text-lg font-semibold text-white line-clamp-2 mb-2 group-hover:text-accent transition-colors">
-              {title}
+            <h3 className="text-lg font-semibold text-white line-clamp-2 mb-2 group-hover:text-accent transition-colors flex items-center gap-2 flex-wrap">
+              <span>{title}</span>
+              <NewBadge date={date} />
             </h3>
             <div className="flex items-center gap-2 text-xs text-zinc-500">
               <span className="text-zinc-400">{guest.name}</span>

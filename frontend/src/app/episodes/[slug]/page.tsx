@@ -4,10 +4,21 @@ import AudioPlayer from '@/components/AudioPlayer';
 import ArticleCard from '@/components/ArticleCard';
 import Link from 'next/link';
 import Image from 'next/image';
-import { mockEpisodes, mockArticles } from '@/lib/mockData';
+import { notFound } from 'next/navigation';
+import { getEpisodeBySlug } from '@/lib/api';
+import { mockArticles } from '@/lib/mockData';
 
-export default function EpisodePage() {
-  const episode = mockEpisodes[0]; // Use first episode as example
+export default async function EpisodePage({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
+  const { slug } = await params;
+  const episode = await getEpisodeBySlug(slug);
+
+  if (!episode) {
+    notFound();
+  }
 
   return (
     <>

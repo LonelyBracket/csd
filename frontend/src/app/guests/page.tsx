@@ -3,9 +3,10 @@ import Footer from '@/components/Footer';
 import GuestCard from '@/components/GuestCard';
 import Link from 'next/link';
 import Image from 'next/image';
-import { mockGuests } from '@/lib/mockData';
+import { getGuests } from '@/lib/api';
 
-export default function GuestsPage() {
+export default async function GuestsPage() {
+  const guests = await getGuests();
   return (
     <>
       <Header />
@@ -72,7 +73,7 @@ export default function GuestsPage() {
             <h2 className="text-xl font-bold text-white mb-6">Featured Guests</h2>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-              {mockGuests.slice(0, 3).map((guest) => (
+              {guests.slice(0, 3).map((guest) => (
                 <Link
                   key={guest.slug}
                   href={`/guests/${guest.slug}`}
@@ -104,7 +105,7 @@ export default function GuestsPage() {
             <p className="text-sm text-zinc-500 mb-6">Showing 42 guests</p>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-4">
-              {mockGuests.map((guest) => (
+              {guests.map((guest) => (
                 <GuestCard key={guest.slug} {...guest} />
               ))}
             </div>

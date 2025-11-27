@@ -5,10 +5,20 @@ import ArticleCard from '@/components/ArticleCard';
 import GuestCard from '@/components/GuestCard';
 import Link from 'next/link';
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import { getGuestBySlug } from '@/lib/api';
 import { mockGuests, mockEpisodes, mockArticles } from '@/lib/mockData';
 
-export default function GuestPage() {
-  const guest = mockGuests[0];
+export default async function GuestPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
+  const guest = await getGuestBySlug(params.slug);
+
+  if (!guest) {
+    notFound();
+  }
 
   return (
     <>

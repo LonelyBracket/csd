@@ -1,9 +1,10 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import Link from 'next/link';
-import { mockTopics } from '@/lib/mockData';
+import { getTopics } from '@/lib/api';
 
-export default function TopicsPage() {
+export default async function TopicsPage() {
+  const topics = await getTopics();
   return (
     <>
       <Header />
@@ -19,7 +20,7 @@ export default function TopicsPage() {
             {/* Stats */}
             <div className="flex gap-8 mt-8">
               <div>
-                <p className="text-3xl font-bold text-white">{mockTopics.length}</p>
+                <p className="text-3xl font-bold text-white">{topics.length}</p>
                 <p className="text-sm text-zinc-500">Topics</p>
               </div>
             </div>
@@ -30,7 +31,7 @@ export default function TopicsPage() {
         <section className="px-4 lg:px-6 py-12">
           <div className="max-w-7xl mx-auto">
             <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {mockTopics.map((topic) => (
+              {topics.map((topic) => (
                 <Link
                   key={topic.slug}
                   href={`/topics/${topic.slug}`}

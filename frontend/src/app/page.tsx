@@ -4,9 +4,20 @@ import EpisodeCard from '@/components/EpisodeCard';
 import ArticleCard from '@/components/ArticleCard';
 import GuestCard from '@/components/GuestCard';
 import Link from 'next/link';
-import { mockEpisodes, mockArticles, mockGuests, mockTopics } from '@/lib/mockData';
+import { getFeaturedEpisode, getEpisodes, getArticles, getGuests, getTopics } from '@/lib/api';
 
-export default function Home() {
+export default async function Home() {
+  // Fetch data from API (with fallback to mock data)
+  const featuredEpisode = await getFeaturedEpisode();
+  const allEpisodes = await getEpisodes();
+  const recentEpisodes = allEpisodes.slice(0, 3);
+  const articles = await getArticles();
+  const recentArticles = articles.slice(0, 2);
+  const allGuests = await getGuests();
+  const featuredGuests = allGuests.slice(0, 4);
+  const allTopics = await getTopics();
+  const topics = allTopics.slice(0, 10);
+
   return (
     <>
       <Header />
@@ -15,7 +26,7 @@ export default function Home() {
         <section className="px-4 lg:px-6 py-16 lg:py-28 dot-pattern min-h-[500px]">
           <div className="max-w-7xl mx-auto">
             <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-6">Latest Episode</p>
-            <EpisodeCard {...mockEpisodes[0]} featured />
+            {featuredEpisode && <EpisodeCard {...featuredEpisode} featured />}
           </div>
         </section>
 
@@ -32,7 +43,7 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className="space-y-4">
-                  {mockEpisodes.slice(1, 4).map((episode) => (
+                  {recentEpisodes.map((episode) => (
                     <EpisodeCard key={episode.slug} {...episode} />
                   ))}
                 </div>
@@ -47,7 +58,7 @@ export default function Home() {
                   </Link>
                 </div>
                 <div className="space-y-4">
-                  {mockArticles.map((article) => (
+                  {recentArticles.map((article) => (
                     <ArticleCard key={article.slug} {...article} />
                   ))}
                 </div>
@@ -61,7 +72,7 @@ export default function Home() {
           <div className="max-w-7xl mx-auto">
             <h2 className="text-2xl font-bold text-white mb-8">Browse by Topic</h2>
             <div className="flex flex-wrap gap-3">
-              {mockTopics.map((topic) => (
+              {topics.map((topic) => (
                 <Link
                   key={topic.slug}
                   href={`/topics/${topic.slug}`}
@@ -84,7 +95,7 @@ export default function Home() {
               </Link>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4 lg:gap-6">
-              {mockGuests.map((guest) => (
+              {featuredGuests.map((guest) => (
                 <GuestCard key={guest.slug} {...guest} />
               ))}
             </div>
