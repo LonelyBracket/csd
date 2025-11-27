@@ -1,9 +1,9 @@
 import Header from '@/components/Header';
 import Footer from '@/components/Footer';
-import ArticleCard from '@/components/ArticleCard';
-import { mockArticles, mockTopics } from '@/lib/mockData';
+import EpisodeCard from '@/components/EpisodeCard';
+import { mockEpisodes, mockTopics } from '@/lib/mockData';
 
-export default function ArticlesPage() {
+export default function EpisodesPage() {
   return (
     <>
       <Header />
@@ -11,20 +11,20 @@ export default function ArticlesPage() {
         {/* Page Header */}
         <section className="px-4 lg:px-6 py-12 lg:py-16 border-b border-surface-border">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">Articles</h1>
+            <h1 className="text-4xl lg:text-5xl font-bold text-white mb-4">Episodes</h1>
             <p className="text-xl text-zinc-400 max-w-2xl">
-              Deep dives, tutorials, and insights on DevOps, platform engineering, and engineering leadership.
+              Conversations with tech leaders about DevOps, platform engineering, and building teams that deliver.
             </p>
 
             {/* Stats */}
             <div className="flex gap-8 mt-8">
               <div>
-                <p className="text-3xl font-bold text-white">{mockArticles.length}</p>
-                <p className="text-sm text-zinc-500">Articles</p>
+                <p className="text-3xl font-bold text-white">{mockEpisodes.length}</p>
+                <p className="text-sm text-zinc-500">Episodes</p>
               </div>
               <div>
-                <p className="text-3xl font-bold text-white">{mockTopics.length}</p>
-                <p className="text-sm text-zinc-500">Topics</p>
+                <p className="text-3xl font-bold text-white">42</p>
+                <p className="text-sm text-zinc-500">Guests</p>
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@ export default function ArticlesPage() {
                 </svg>
                 <input
                   type="text"
-                  placeholder="Search articles..."
+                  placeholder="Search episodes..."
                   className="w-full pl-10 pr-4 py-2.5 bg-surface-raised border border-surface-border rounded-lg text-white placeholder-zinc-500 focus:outline-none focus:border-accent/50 transition-colors"
                 />
               </div>
@@ -64,14 +64,14 @@ export default function ArticlesPage() {
           </div>
         </section>
 
-        {/* Articles Grid */}
+        {/* Episodes List */}
         <section className="px-4 lg:px-6 py-12">
           <div className="max-w-7xl mx-auto">
-            <p className="text-sm text-zinc-500 mb-6">Showing {mockArticles.length} articles</p>
+            <p className="text-sm text-zinc-500 mb-6">Showing {mockEpisodes.length} episodes</p>
 
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {mockArticles.map((article) => (
-                <ArticleCard key={article.slug} {...article} />
+            <div className="space-y-4">
+              {mockEpisodes.map((episode) => (
+                <EpisodeCard key={episode.slug} {...episode} />
               ))}
             </div>
           </div>

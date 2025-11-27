@@ -44,7 +44,7 @@ export default function Header() {
           {/* Desktop navigation */}
           <nav className="hidden lg:flex items-center gap-1">
             <Link
-              href="/"
+              href="/episodes"
               className="px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-overlay rounded-lg transition-colors"
             >
               Episodes
@@ -94,7 +94,7 @@ export default function Header() {
         {mobileMenuOpen && (
           <nav className="lg:hidden pb-4 space-y-2">
             <Link
-              href="/"
+              href="/episodes"
               className="block px-4 py-2 text-sm font-medium text-zinc-400 hover:text-white hover:bg-surface-overlay rounded-lg transition-colors"
               onClick={() => setMobileMenuOpen(false)}
             >

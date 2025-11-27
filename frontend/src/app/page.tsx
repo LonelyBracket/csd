@@ -12,7 +12,7 @@ export default function Home() {
       <Header />
       <main className="pt-16">
         {/* Hero / Featured Episode */}
-        <section className="px-4 lg:px-6 py-12 lg:py-20 dot-pattern">
+        <section className="px-4 lg:px-6 py-16 lg:py-28 dot-pattern min-h-[500px]">
           <div className="max-w-7xl mx-auto">
             <p className="text-xs font-semibold text-accent uppercase tracking-widest mb-6">Latest Episode</p>
             <EpisodeCard {...mockEpisodes[0]} featured />
@@ -27,7 +27,7 @@ export default function Home() {
               <div className="lg:col-span-3 mb-12 lg:mb-0">
                 <div className="flex items-center justify-between mb-8">
                   <h2 className="text-2xl font-bold text-white">Recent Episodes</h2>
-                  <Link href="/" className="text-sm font-medium text-accent hover:text-accent-hover transition-colors">
+                  <Link href="/episodes" className="text-sm font-medium text-accent hover:text-accent-hover transition-colors">
                     View All →
                   </Link>
                 </div>
