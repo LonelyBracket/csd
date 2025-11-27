@@ -1,0 +1,15 @@
+services:
+  strapi:
+    build: .
+    container_name: csd-strapi
+    ports:
+      - "1337:1337"
+    volumes:
+      - ./src:/app/src
+      - ./config:/app/config
+      - ./public:/app/public
+    env_file:
+      - .env
+    environment:
+      - NODE_ENV=development
+    restart: unless-stopped

@@ -40,6 +40,7 @@ next-env.d.ts
 build/
 exports/
 .strapi-updater.json
+backend/public/uploads/
 
 # PostgreSQL data (Docker volumes are handled by Docker, but just in case)
 postgres_data/
