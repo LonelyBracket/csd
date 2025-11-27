@@ -9,7 +9,7 @@ export default function Footer() {
             <h4 className="text-white font-semibold mb-4">Content</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link href="/" className="text-zinc-400 hover:text-accent transition-colors">
+                <Link href="/episodes" className="text-zinc-400 hover:text-accent transition-colors">
                   Episodes
                 </Link>
               </li>
@@ -98,7 +98,7 @@ export default function Footer() {
         </div>
 
         <div className="border-t border-surface-border pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-zinc-500">© 2024 Control+Shift+Deliver. All rights reserved.</p>
+          <p className="text-sm text-zinc-500">© {new Date().getFullYear()} Control+Shift+Deliver. All rights reserved.</p>
           <p className="text-sm font-semibold">
             Control+Shift+<span className="gradient-text">Deliver</span>
           </p>
