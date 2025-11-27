@@ -8,8 +8,10 @@ interface ArticleCardProps {
   topic: string;
   readTime: string;
   date: string;
-  image: string;
+  image?: string;
 }
+
+const PLACEHOLDER_IMAGE = 'https://images.unsplash.com/photo-1526374965328-7f61d4dc18c5?w=600&h=300&fit=crop';
 
 export default function ArticleCard({
   slug,
@@ -25,7 +27,7 @@ export default function ArticleCard({
       <article className="group bg-surface-raised border border-surface-border rounded-xl overflow-hidden hover:border-accent/30 transition-all duration-200 cursor-pointer">
         <div className="aspect-[2/1] relative overflow-hidden">
           <Image
-            src={image}
+            src={image || PLACEHOLDER_IMAGE}
             alt={title}
             fill
             className="object-cover group-hover:scale-105 transition-transform duration-300"

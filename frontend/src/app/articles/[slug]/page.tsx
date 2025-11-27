@@ -62,7 +62,13 @@ export default async function ArticlePage({
             {article.author && (
               <div className="flex items-center gap-4 pb-8 border-b border-surface-border">
                 <div className="w-12 h-12 rounded-full overflow-hidden ring-2 ring-accent/30 relative">
-                  <Image src={article.author.photo} alt={article.author.name} fill className="object-cover" />
+                  {article.author.photo ? (
+                    <Image src={article.author.photo} alt={article.author.name} fill className="object-cover" />
+                  ) : (
+                    <div className="w-full h-full bg-accent/20 flex items-center justify-center text-accent font-bold">
+                      {article.author.name.charAt(0)}
+                    </div>
+                  )}
                 </div>
                 <div>
                   <p className="font-semibold text-white">{article.author.name}</p>
@@ -72,6 +78,7 @@ export default async function ArticlePage({
             )}
 
             {/* Hero Image */}
+            {article.image && (
             <div className="my-10 rounded-2xl overflow-hidden glow-box">
               <div className="aspect-[2/1] relative">
                 <Image src={article.image} alt={article.title} fill className="object-cover" />
@@ -79,6 +86,7 @@ export default async function ArticlePage({
                 <div className="absolute inset-0 bg-accent/10 mix-blend-overlay"></div>
               </div>
             </div>
+            )}
 
             {/* Article Content */}
             <div className="prose-dark max-w-none">
